@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { useState } from "react";
 import { projects } from "./projectsData";
@@ -29,6 +30,17 @@ export default function Home() {
             href={`/projects/${p.slug}`}
             className="block rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10"
           >
+            {p.media && (
+              <div className="mb-4 overflow-hidden rounded-xl">
+                <Image
+                  src={p.media}
+                  alt={p.title}
+                  width={800}
+                  height={450}
+                  className="h-48 w-full object-cover"
+                />
+              </div>
+            )}
             <h2 className="mt-2 text-2xl font-semibold">{p.title}</h2>
             <p className="mt-2 text-gray-300">{p.oneLiner}</p>
 

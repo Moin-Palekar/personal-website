@@ -1,4 +1,6 @@
 import { projects } from "../projectsData";
+import Image from "next/image";
+
 
 export default function Projects() {
   return (
@@ -11,11 +13,23 @@ export default function Projects() {
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {projects.map((p) => (
+
             <a
               key={p.slug}
               href={`/projects/${p.slug}`}
               className="block rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10"
             >
+              {p.media && (
+                <div className="mb-4 overflow-hidden rounded-xl">
+                  <Image
+                    src={p.media}
+                    alt={p.title}
+                    width={800}
+                    height={450}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              )}
               <h2 className="text-2xl font-semibold">{p.title}</h2>
               <p className="mt-2 text-gray-300">{p.oneLiner}</p>
 
@@ -28,7 +42,7 @@ export default function Projects() {
                     {t}
                   </span>
                 ))}
-              </div>
+              </div>+
             </a>
           ))}
         </div>

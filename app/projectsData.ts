@@ -16,7 +16,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind"],
     href: "",
     repo: "",
-    media: "",
+    media: "/projects/placeholder.gif",
     },
 
     {
