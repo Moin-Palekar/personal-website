@@ -6,6 +6,8 @@ export type Project = {
   href?: string;      // live demo link (optional)
   repo?: string;      // github repo link (optional)
   media?: string;     // path to image/gif in /public (optional)
+  description: string; // detailed description
+  challenges: string;  // challenges faced during the project
 }
 
 export const projects: Project[] = [
@@ -17,6 +19,8 @@ export const projects: Project[] = [
     href: "",
     repo: "",
     media: "/projects/placeholder.gif",
+    description: "",
+    challenges: "",
     },
 
     {
@@ -27,6 +31,8 @@ export const projects: Project[] = [
     href: "",
     repo: "",
     media: "",
+    description: "",
+    challenges: "",
     },
 
 

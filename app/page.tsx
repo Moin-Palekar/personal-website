@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
-
 import { useState } from "react";
 import { projects } from "./projectsData";
+import { useEffect } from "react";
+
 
 
 
@@ -10,6 +11,25 @@ export default function Home() {
 
   const [index, setIndex] = useState(0);
   const p = projects[index];
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "ArrowLeft") {
+        setIndex((i) => (i === 0 ? projects.length - 1 : i - 1));
+      }
+
+      if (e.key === "ArrowRight") {
+        setIndex((i) => (i === projects.length - 1 ? 0 : i + 1));
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
 
 
   return (
@@ -21,6 +41,42 @@ export default function Home() {
           <br></br>
           develop autonomous models for embodied agents.
         </p>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href="https://github.com/Moin-Palekar"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="/meta_resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
+          >
+            Resume
+          </a>
+
+          <a
+            href="mailto:moinismailp@gmail.com"
+            className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
+          >
+            Email
+          </a>
+
+          <a
+            href="https://x.com/moinismailp"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
+          >
+            Twitter
+          </a>
+        </div>
 
         <div
           key={index}
@@ -56,27 +112,32 @@ export default function Home() {
             </div>
           </a>
           {/* Navigation buttons */}
-          <div className="mt-6 flex justify-between">
-            <button
-              onClick={() =>
-                setIndex((i) => (i === 0 ? projects.length - 1 : i - 1))
-              }
+          <div className="mt-8 flex items-center justify-between">
 
-              className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
-            >
-              Prev
-            </button>
+            <p className="mb-3 text-sm text-gray-400">
+              Project {index + 1} / {projects.length}
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={() =>
+                  setIndex((i) => (i === 0 ? projects.length - 1 : i - 1))
+                }
 
-            <button
-              onClick={() =>
-                setIndex((i) => (i === projects.length - 1 ? 0 : i + 1))
-              }
+                className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
+              >
+                Prev
+              </button>
 
-              className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
-            >
-              Next
-            </button>
+              <button
+                onClick={() =>
+                  setIndex((i) => (i === projects.length - 1 ? 0 : i + 1))
+                }
 
+                className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
+              >
+                Next
+              </button>
+            </div>
           </div>
 
         </div>
