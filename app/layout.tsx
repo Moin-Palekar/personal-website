@@ -25,9 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className="min-h-screen bg-black text-white"
       >
-        <nav className="sticky top-0 z-50 border-b bg-red-600/70 backdrop-blur">
+        <nav className="sticky top-0 z-50 py-5 border-b bg-red-600/70 backdrop-blur">
           <div className="mx-auto flex max-w-5l items-center justify-between px-6 px-4">
             <a href="/" className="font-semibold">Moin</a>
             <div className="flex gap-6 text-sm">
@@ -37,6 +37,13 @@ export default function RootLayout({
           </div>
         </nav>
         {children}
+
+        <footer className="mt-20 flex border-t border-white/10 py-6 bg-red-600/70">
+          <div className="mx-auto max-w-5xl px-6 text-sm text-gray-400 flex justify-between ">
+            <span>© {new Date().getFullYear()} Moin Palekar</span>
+          </div>
+        </footer>
+
       </body>
     </html>
   );

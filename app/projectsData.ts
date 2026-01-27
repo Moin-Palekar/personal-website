@@ -19,7 +19,7 @@ export const projects: Project[] = [
     href: "",
     repo: "",
     media: "/projects/placeholder.gif",
-    description: "",
+    description: "A wesbite to showcase my projects and blog posts, built with Next.js and Tailwind CSS. Features include user authentication and a messaging system.",
     challenges: "",
     },
 

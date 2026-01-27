@@ -46,7 +46,7 @@ export default async function ProjectPage({
                 <section>
                     <h2 className="text-2xl font-semibold">Overview</h2>
                     <p className="mt-2 text-gray-300">
-                        {project.oneLiner}
+                        {project.description || project.oneLiner}
                     </p>
                 </section>
 
@@ -62,6 +62,13 @@ export default async function ProjectPage({
                             </span>
                         ))}
                     </div>
+                </section>
+
+                <section>
+                    <h2 className="text-2xl font-semibold">Challenges</h2>
+                    <p className="mt-2 text-gray-300">
+                        {project.challenges || "Nothing challenges me!"}
+                    </p>
                 </section>
             </div>
 
