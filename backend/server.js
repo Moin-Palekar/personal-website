@@ -1,7 +1,11 @@
+require('dotenv').config();
 const express = require('express');
+const connectDB = require('./db');
 
 const app = express();
 const PORT = 8000;
+
+connectDB();
 
 app.use(express.json());
 
