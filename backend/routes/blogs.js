@@ -23,6 +23,28 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// PUT update a blog by id
+router.put('/:id', async (req, res) => {
+  try {
+    const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!blog) return res.status(404).json({ error: 'Blog not found' });
+    res.json(blog);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE a blog by id
+router.delete('/:id', async (req, res) => {
+  try {
+    const blog = await Blog.findByIdAndDelete(req.params.id);
+    if (!blog) return res.status(404).json({ error: 'Blog not found' });
+    res.json({ message: 'Blog deleted' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // POST a new blog
 router.post('/', async (req, res) => {
   try {
