@@ -9,20 +9,23 @@ export default function NewBlog() {
   const [tags, setTags] = useState("");
 
   async function handleSubmit() {
-    const res = await fetch("http://localhost:8000/blogs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title,
-        content,
-        tags: tags.split(",").map((t) => t.trim()),
-      }),
-    });
+  const res = await fetch("http://localhost:8000/blogs", {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      title,
+      content,
+      tags: tags.split(",").map((t) => t.trim()),
+    }),
+  });
 
-    if (res.ok) {
-      router.push("/blog");
-    }
+  if (res.ok) {
+    router.push("/blog");
   }
+}
 
   return (
     <main className="min-h-screen px-6 py-16">
