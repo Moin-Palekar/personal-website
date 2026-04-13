@@ -4,12 +4,16 @@ const cors = require('cors');
 const connectDB = require('./db');
 const blogRoutes = require('./routes/blogs');
 const authRoutes = require('./routes/auth');
+const messageRoutes = require('./routes/messages');
+
 
 const app = express();
 const PORT = 8000;
 
 app.use(cors());
 app.use(express.json());
+app.use('/messages', messageRoutes);
+
 
 connectDB();
 
