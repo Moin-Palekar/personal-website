@@ -1,6 +1,6 @@
 // @ts-nocheck
 async function getBlogs() {
-  const res = await fetch("http://localhost:8000/blogs", { cache: "no-store" });
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/blogs", { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch blogs");
   return res.json();
 }

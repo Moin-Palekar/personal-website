@@ -9,7 +9,7 @@ export default function NewBlog() {
   const [tags, setTags] = useState("");
 
   async function handleSubmit() {
-  const res = await fetch("http://localhost:8000/blogs", {
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/blogs", {
     method: "POST",
     headers: { 
       "Content-Type": "application/json",

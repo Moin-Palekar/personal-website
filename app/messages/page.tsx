@@ -9,7 +9,7 @@ export default function MessagesPage() {
   useEffect(() => {
     async function fetchMessages() {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:8000/messages", {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/messages", {
         headers: {
           "Authorization": "Bearer " + token,
         },
