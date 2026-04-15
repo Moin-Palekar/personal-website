@@ -12,6 +12,26 @@ export default function Home() {
   const [index, setIndex] = useState(0);
   const p = projects[index];
 
+  if (projects.length === 0) {
+  return (
+    <main className="min-h-screen px-6 py-16">
+      <div className="mx-auto max-w-5xl">
+        <h1 className="text-5xl font-bold tracking-tight">Moin Palekar</h1>
+        <p className="mt-4 max-w-2xl text-gray-300">
+          I build production-grade full-stack apps with modern web tech, and
+          develop autonomous models for embodied agents.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a href="https://github.com/Moin-Palekar" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">GitHub</a>
+          <a href="/meta_resume.pdf" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Resume</a>
+          <a href="mailto:moinismailp@gmail.com" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Email</a>
+          <a href="https://x.com/moinismailp" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Twitter</a>
+        </div>
+      </div>
+    </main>
+  );
+}
+
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "ArrowLeft") {
