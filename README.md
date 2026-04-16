@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# moinpalekar.com
 
-## Getting Started
+A production-grade full-stack personal website with a blog system, JWT authentication, and a contact/messaging system. Built end-to-end from scratch — frontend, backend, database, deployment, and custom domain.
 
-First, run the development server:
+**Live:** [moinpalekar.com](https://moinpalekar.com)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Tech Stack
+
+**Frontend:** Next.js 16, TypeScript, Tailwind CSS, deployed on Vercel  
+**Backend:** Node.js, Express.js, deployed on Render  
+**Database:** MongoDB with Mongoose ODM  
+**Auth:** JWT (JSON Web Tokens), bcryptjs for password hashing  
+**Domain:** moinpalekar.com via Cloudflare DNS
+
+---
+
+## Architecture
+
+```
+moinpalekar.com (Vercel)          api.render.com (Render)
+┌─────────────────────┐           ┌──────────────────────┐
+│   Next.js Frontend  │ ◄──────► │   Express Backend    │
+│                     │   HTTPS   │                      │
+│  - App Router       │           │  - REST API          │
+│  - Server Components│           │  - Auth Middleware   │
+│  - Client Components│           │  - JWT Verification  │
+└─────────────────────┘           └──────────┬───────────┘
+                                             │
+                                   ┌─────────▼───────────┐
+                                   │   MongoDB Atlas     │
+                                   │                     │
+                                   │  - blogs            │
+                                   │  - users            │
+                                   │  - messages         │
+                                   └─────────────────────┘
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Blog System**
+- Full CRUD — create, read, update, delete blog posts
+- Dynamic routing with MongoDB `_id` as slug
+- Server-side data fetching with no-cache for live data
 
-## Learn More
+**Authentication**
+- User registration with bcrypt password hashing
+- JWT login with 7-day token expiry
+- Auth middleware protecting write routes (POST, PUT, DELETE)
+- Token stored in localStorage, sent via Authorization header
 
-To learn more about Next.js, take a look at the following resources:
+**Messaging / Contact**
+- Public contact form — any visitor can send a message
+- Messages stored in MongoDB with sender name, email, content, timestamp, and user agent
+- Private `/messages` dashboard — only accessible when logged in with a valid JWT
+- Email format validation on the backend via Mongoose regex
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Deployment**
+- Frontend auto-deploys on every push to `main` via Vercel
+- Backend auto-deploys on every push to `main` via Render
+- Environment variables managed separately on each platform — no secrets in the repo
+- Custom domain connected via Cloudflare DNS with automatic SSL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Running Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Prerequisites:** Node.js, a MongoDB Atlas cluster
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**1. Clone the repo**
+```bash
+git clone https://github.com/Moin-Palekar/personal-website.git
+cd personal-website
+```
+
+**2. Install frontend dependencies**
+```bash
+npm install
+```
+
+**3. Install backend dependencies**
+```bash
+cd backend
+npm install
+```
+
+**4. Set up environment variables**
+
+Create `backend/.env`:
+```
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+Create `.env.local` in the root:
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+**5. Start both servers**
+
+Terminal 1 (backend):
+```bash
+cd backend
+node server.js
+```
+
+Terminal 2 (frontend):
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+---
+
+## API Routes
+
+| Method | Route | Auth Required | Description |
+|--------|-------|---------------|-------------|
+| GET | `/blogs` | No | Fetch all blogs |
+| GET | `/blogs/:id` | No | Fetch single blog |
+| POST | `/blogs` | Yes | Create blog |
+| PUT | `/blogs/:id` | Yes | Update blog |
+| DELETE | `/blogs/:id` | Yes | Delete blog |
+| POST | `/auth/register` | No | Register user |
+| POST | `/auth/login` | No | Login, returns JWT |
+| POST | `/messages` | No | Send a message |
+| GET | `/messages` | Yes | View all messages |
+
+---
+
+## Project Structure
+
+```
+personal-website/
+├── app/                    # Next.js App Router
+│   ├── blog/               # Blog list, post, new post pages
+│   ├── contact/            # Contact form
+│   ├── login/              # Login page
+│   ├── register/           # Register page
+│   ├── messages/           # Private messages dashboard
+│   ├── projects/           # Projects pages
+│   ├── layout.tsx          # Global layout with nav and footer
+│   └── page.tsx            # Homepage
+├── backend/
+│   ├── middleware/
+│   │   └── auth.js         # JWT verification middleware
+│   ├── models/
+│   │   ├── Blog.js         # Mongoose blog schema
+│   │   ├── User.js         # Mongoose user schema with bcrypt hook
+│   │   └── Message.js      # Mongoose message schema
+│   ├── routes/
+│   │   ├── blogs.js        # Blog CRUD routes
+│   │   ├── auth.js         # Register and login routes
+│   │   └── messages.js     # Message routes
+│   ├── db.js               # MongoDB connection
+│   └── server.js           # Express app entry point
+└── public/                 # Static assets
+```
+
+---
+
+Built by [Moin Palekar](https://moinpalekar.com)
