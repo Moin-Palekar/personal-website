@@ -23,7 +23,7 @@ export default function Home() {
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="https://github.com/Moin-Palekar" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">GitHub</a>
-          <a href="/meta_resume.pdf" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Resume</a>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Resume</a>
           <a href="mailto:moinismailp@gmail.com" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Email</a>
           <a href="https://x.com/moinismailp" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Twitter</a>
         </div>
