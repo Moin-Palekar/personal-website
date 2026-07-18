@@ -73,7 +73,7 @@ export default function Home() {
           </a>
 
           <a
-            href="/meta_resume.pdf"
+            href="/resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
