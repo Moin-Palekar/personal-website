@@ -54,7 +54,6 @@ export default function LoginPage() {
           >
             Login
           </button>
-          <p className="text-sm text-gray-400">Don't have an account? <a href="/register" className="text-white underline">Register</a></p>
         </div>
       </div>
     </main>

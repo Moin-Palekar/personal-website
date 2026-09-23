@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 
 // POST /auth/register
 router.post('/register', async (req, res) => {
+  if (process.env.ALLOW_REGISTRATION !== 'true') {
+    return res.status(403).json({ error: 'Registration is closed' });
+  }
   try {
     const { username, email, password } = req.body;
 
