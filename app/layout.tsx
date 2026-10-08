@@ -25,27 +25,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="min-h-screen bg-gray-900 text-white"
+        className={`flex flex-col ${geistSans.variable} ${geistMono.variable} min-h-screen bg-paper text-ink antialiased`}
+        style={{ fontFamily: "var(--font-geist-sans)" }}
       >
-        <nav className="sticky top-0 z-50 py-5 bg-red-600/70 backdrop-blur">
-          <div className="mx-auto flex max-w-5l items-center justify-between px-6 px-4">
-            <a href="/" className="font-semibold">Moin</a>
-            <div className="flex gap-6 text-sm">
-              <a href="/projects" className="hover:underline">Projects</a>
-              <a href="/contact" className="hover:underline">Contact</a>
-              <a href="/blog " className="hover:underline">Blog</a>
-              <a href="/login " className="hover:underline">Login</a>
+        <nav className="sticky top-0 z-50 border-b border-line bg-paper/80 backdrop-blur">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+            <a href="/" className="font-semibold tracking-tight">Moin Palekar</a>
+            <div className="flex gap-6 text-sm text-muted">
+              <a href="/projects" className="hover:text-ink">Projects</a>
+              <a href="/blog" className="hover:text-ink">Blog</a>
+              <a href="/contact" className="hover:text-ink">Contact</a>
             </div>
           </div>
         </nav>
-        {children}
 
-        <footer className="mt-0 flex border-t border-white/10 py-6 bg-red-600/70">
-          <div className="mx-auto max-w-5xl px-6 text-sm text-gray-400 flex justify-between ">
-            <span>© {new Date().getFullYear()} Moin Palekar</span>
+        <div className="flex-1">{children}</div>
+
+        <footer className="border-t border-line py-8">
+          <div className="mx-auto max-w-5xl px-6 text-sm text-muted">
+            © {new Date().getFullYear()} Moin Palekar
           </div>
         </footer>
-
       </body>
     </html>
   );

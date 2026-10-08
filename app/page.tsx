@@ -1,166 +1,73 @@
-"use client";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
 import { projects } from "./projectsData";
-import { useEffect } from "react";
 
-
-
+const links = [
+  { label: "GitHub", href: "https://github.com/Moin-Palekar", external: true },
+  { label: "Resume", href: "/resume.pdf", external: true },
+  { label: "Email", href: "mailto:moinismailp@gmail.com" },
+  { label: "X", href: "https://x.com/moinismailp", external: true },
+];
 
 export default function Home() {
+  const featured = projects.filter((p) => p.featured);
 
-  const [index, setIndex] = useState(0);
-  const p = projects[index];
-
-  if (projects.length === 0) {
   return (
-    <main className="min-h-screen px-6 py-16">
-      <div className="mx-auto max-w-5xl">
+    <main className="py-20">
+      <div className="mx-auto max-w-5xl px-6">
         <h1 className="text-5xl font-bold tracking-tight">Moin Palekar</h1>
-        <p className="mt-4 max-w-2xl text-gray-300">
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
           I build production-grade full-stack apps with modern web tech, and
           develop autonomous models for embodied agents.
         </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a href="https://github.com/Moin-Palekar" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">GitHub</a>
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Resume</a>
-          <a href="mailto:moinismailp@gmail.com" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Email</a>
-          <a href="https://x.com/moinismailp" target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10">Twitter</a>
-        </div>
-      </div>
-    </main>
-  );
-}
 
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "ArrowLeft") {
-        setIndex((i) => (i === 0 ? projects.length - 1 : i - 1));
-      }
-
-      if (e.key === "ArrowRight") {
-        setIndex((i) => (i === projects.length - 1 ? 0 : i + 1));
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
-
-
-  return (
-    <main className="min-h-screen px-6 py-16">
-      <div className="mx-auto max-w-5xl">
-        <h1 className="text-5xl font-bold tracking-tight">Moin Palekar</h1>
-        <p className="mt-4 max-w-2xl text-gray-300">
-          I build production-grade full-stack apps with modern web tech, and
-          <br></br>
-          develop autonomous models for embodied agents.
-        </p>
-
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href="https://github.com/Moin-Palekar"
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
-          >
-            GitHub
-          </a>
-
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
-          >
-            Resume
-          </a>
-
-          <a
-            href="mailto:moinismailp@gmail.com"
-            className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
-          >
-            Email
-          </a>
-
-          <a
-            href="https://x.com/moinismailp"
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
-          >
-            Twitter
-          </a>
+        <div className="mt-8 flex flex-wrap gap-3">
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              {...(l.external ? { target: "_blank", rel: "noreferrer" } : {})}
+              className="rounded-lg border border-line bg-card px-4 py-2 text-sm font-medium transition hover:border-ink"
+            >
+              {l.label}
+            </a>
+          ))}
         </div>
 
-        <div
-          key={index}
-          className="mt-10"
-        >
-          <a
-            href={`/projects/${p.slug}`}
-            className="block rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10"
-          >
-            {p.media && (
-              <div className="mb-4 overflow-hidden rounded-xl">
-                <Image
-                  src={p.media}
-                  alt={p.title}
-                  width={800}
-                  height={450}
-                  className="h-48 w-full object-cover"
-                />
-              </div>
-            )}
-            <h2 className="mt-2 text-2xl font-semibold">{p.title}</h2>
-            <p className="mt-2 text-gray-300">{p.oneLiner}</p>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {p.tech.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-sm text-gray-200"
+        {featured.length > 0 && (
+          <section className="mt-20">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
+              Selected projects
+            </h2>
+            <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              {featured.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/projects/${p.slug}`}
+                  className="group block rounded-2xl border border-line bg-card p-6 transition hover:-translate-y-0.5 hover:shadow-md"
                 >
-                  {t}
-                </span>
+                  {p.media && (
+                    <div className="mb-4 overflow-hidden rounded-xl">
+                      <Image src={p.media} alt={p.title} width={800} height={450} className="h-44 w-full object-cover" />
+                    </div>
+                  )}
+                  <h3 className="text-xl font-semibold group-hover:text-accent">{p.title}</h3>
+                  <p className="mt-2 text-muted">{p.oneLiner}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {p.tech.map((t) => (
+                      <span key={t} className="rounded-full bg-paper px-3 py-1 text-xs font-medium text-muted">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
               ))}
             </div>
-          </a>
-          {/* Navigation buttons */}
-          <div className="mt-8 flex items-center justify-between">
-
-            <p className="mb-3 text-sm text-gray-400">
-              Project {index + 1} / {projects.length}
-            </p>
-            <div className="flex gap-2">
-              <button
-                onClick={() =>
-                  setIndex((i) => (i === 0 ? projects.length - 1 : i - 1))
-                }
-
-                className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
-              >
-                Prev
-              </button>
-
-              <button
-                onClick={() =>
-                  setIndex((i) => (i === projects.length - 1 ? 0 : i + 1))
-                }
-
-                className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-
-        </div>
+            <Link href="/projects" className="mt-8 inline-block text-sm font-medium text-accent hover:underline">
+              See all projects →
+            </Link>
+          </section>
+        )}
       </div>
     </main>
   );
