@@ -1,4 +1,5 @@
 // @ts-nocheck
+import Markdown from "../../components/Markdown";
 async function getBlog(id) {
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/blogs/" + id, { cache: "no-store" });
   if (!res.ok) return null;
@@ -16,9 +17,9 @@ export default async function BlogPost({ params }) {
   return (
     <main className="min-h-screen px-6 py-16">
       <div className="mx-auto max-w-3xl">
-        <p className="text-sm text-gray-400">{post.date}</p>
+        <p className="text-sm text-gray-400">{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
         <h1 className="mt-2 text-4xl font-bold">{post.title}</h1>
-        <p className="mt-8 text-gray-300 leading-relaxed">{post.content}</p>
+        <div className="mt-8"><Markdown content={post.content} /></div>
       </div>
     </main>
   );

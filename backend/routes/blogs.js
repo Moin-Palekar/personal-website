@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/auth');
 // GET all blogs
 router.get('/', async (req, res) => {
   try {
-    const blogs = await Blog.find();
+    const blogs = await Blog.find().sort({ date: -1 });
     res.json(blogs);
   } catch (err) {
     res.status(500).json({ error: err.message });

@@ -14,7 +14,7 @@ export default async function BlogPage() {
         <div className="mt-10 flex flex-col gap-6">
           {blogs.map((post) => (
             <a key={post._id} href={"/blog/" + post._id} className="block rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10">
-              <p className="text-sm text-gray-400">{post.date}</p>
+              <p className="text-sm text-gray-400">{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
               <h2 className="mt-1 text-2xl font-semibold">{post.title}</h2>
             </a>
           ))}
