@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import CosmicBand from "./components/CosmicBand";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,13 +29,18 @@ export default function RootLayout({
         className={`flex flex-col ${geistSans.variable} ${geistMono.variable} min-h-screen bg-paper text-ink antialiased`}
         style={{ fontFamily: "var(--font-geist-sans)" }}
       >
-        <nav className="sticky top-0 z-50 border-b border-line bg-paper/80 backdrop-blur">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-            <a href="/" className="font-semibold tracking-tight">Moin Palekar</a>
-            <div className="flex gap-6 text-sm text-muted">
-              <a href="/projects" className="hover:text-ink">Projects</a>
-              <a href="/blog" className="hover:text-ink">Blog</a>
-              <a href="/contact" className="hover:text-ink">Contact</a>
+        <nav className="sticky top-0 z-50 overflow-hidden border-b border-line">
+          <div className="pointer-events-none absolute inset-0">
+            <CosmicBand height={64} />
+          </div>
+          <div className="relative mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+            <a href="/" className="rounded-full bg-paper/80 px-3 py-1 font-semibold tracking-tight backdrop-blur">
+              Moin Palekar
+            </a>
+            <div className="flex gap-1 rounded-full bg-paper/80 px-2 py-1 text-sm text-muted backdrop-blur">
+              <a href="/projects" className="rounded-full px-3 py-0.5 hover:text-accent">Projects</a>
+              <a href="/blog" className="rounded-full px-3 py-0.5 hover:text-accent">Blog</a>
+              <a href="/contact" className="rounded-full px-3 py-0.5 hover:text-accent">Contact</a>
             </div>
           </div>
         </nav>
