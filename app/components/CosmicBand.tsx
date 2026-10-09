@@ -83,6 +83,7 @@ export default function CosmicBand({ height = 150 }: { height?: number }) {
             }
         };
 
+        let ready = false;
         const resize = () => {
             W = cv.clientWidth;
             H = cv.clientHeight;
@@ -90,6 +91,7 @@ export default function CosmicBand({ height = 150 }: { height?: number }) {
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             oc.setTransform(dpr, 0, 0, dpr, 0, 0);
             seed();
+            if (ready) { scene(0); breathe(); }
         };
         resize();
         const ro = new ResizeObserver(resize);
@@ -216,6 +218,7 @@ export default function CosmicBand({ height = 150 }: { height?: number }) {
                 const dx = Math.sin(ph + x * 0.008) * 3;
                 const hh = H * sy;
                 ctx.drawImage(off, x * dpr, 0, step * dpr, H * dpr, x + dx, (H - hh) / 2, step + 1, hh);
+                ready = true;
             }
         };
 

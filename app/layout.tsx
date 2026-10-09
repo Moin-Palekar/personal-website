@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import CosmicBand from "./components/CosmicBand";
 
@@ -10,6 +10,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
 });
 
@@ -26,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex flex-col ${geistSans.variable} ${geistMono.variable} min-h-screen bg-paper text-ink antialiased`}
+        className={`flex flex-col ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} min-h-screen bg-paper text-ink antialiased`}
         style={{ fontFamily: "var(--font-geist-sans)" }}
       >
         <nav className="sticky top-0 z-50 overflow-hidden border-b border-line">

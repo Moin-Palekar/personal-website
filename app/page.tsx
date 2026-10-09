@@ -16,10 +16,17 @@ export default function Home() {
   return (
     <main className="py-20">
       <div className="mx-auto max-w-5xl px-6">
-        <h1 className="text-5xl font-bold tracking-tight">Moin Palekar</h1>
+        <h1 className="font-display text-6xl font-semibold tracking-tight sm:text-7xl">Moin Palekar</h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
           I build production-grade full-stack apps with modern web tech, and
           develop autonomous models for embodied agents.
+        </p>
+
+        <p className="mt-3 text-sm font-medium text-ink">
+          MS Computer Science at ASU, graduating May 2027.
+          <span className="ml-1 text-accent">
+            Open to roles in software engineering, autonomous vehicles, embodied AI, and machine learning.
+          </span>
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -58,15 +65,14 @@ export default function Home() {
                     </div>
                   )}
                   <span
-                    className={`self-start rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                      p.status === "in progress"
-                        ? "bg-saffron-soft text-saffron"
-                        : "bg-accent-soft text-accent"
-                    }`}
+                    className={`self-start rounded-full px-2.5 py-0.5 text-xs font-semibold ${p.status === "in progress"
+                      ? "bg-saffron-soft text-saffron"
+                      : "bg-accent-soft text-accent"
+                      }`}
                   >
                     {p.status === "in progress" ? "In progress" : "Completed"}
                   </span>
-                  <h3 className="mt-3 text-xl font-semibold group-hover:text-accent">{p.title}</h3>
+                  <h3 className="mt-3 font-display text-2xl font-semibold group-hover:text-accent">{p.title}</h3>
                   <p className="mt-2 text-muted">{p.oneLiner}</p>
                   <div className="mt-auto flex flex-wrap gap-2 pt-4">
                     {p.tech.map((t) => (

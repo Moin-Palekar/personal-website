@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-@theme {
+
+@theme inline {
+  --font-display: var(--font-fraunces);
   --color-paper: #F3F1EC;        /* Shiva: vibhuti ash */
   --color-card: #FFFFFF;
   --color-ink: #16182B;          /* night-indigo ink */
