@@ -159,7 +159,7 @@ export default async function ProjectPage({
           </div>
         </section>
 
-        <nav className="mt-20 grid gap-4 border-t border-line pt-10 sm:grid-cols-2">
+        <nav className="mt-20 grid grid-cols-1 gap-4 border-t border-line pt-10 sm:grid-cols-2">
           {[
             { p: prev, label: "Previous", dir: "prev" as const },
             { p: next, label: "Next", dir: "next" as const },
@@ -167,7 +167,7 @@ export default async function ProjectPage({
             <Link
               key={dir}
               href={`/projects/${p.slug}`}
-              className={`group flex items-center gap-4 rounded-2xl border border-line bg-card px-5 py-4 transition hover:border-accent hover:bg-accent-soft ${
+              className={`group flex min-w-0 items-center gap-4 rounded-2xl border border-line bg-card px-5 py-4 transition hover:border-accent hover:bg-accent-soft ${
                 dir === "next" ? "flex-row-reverse text-right" : ""
               }`}
             >
