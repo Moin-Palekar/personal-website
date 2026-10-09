@@ -17,6 +17,34 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "personal-website",
+    title: "moinpalekar.com",
+    oneLiner:
+      "This site: a Next.js and TypeScript frontend on Vercel, an Express and MongoDB API on Render, JWT auth, and a Markdown + LaTeX blog engine.",
+    status: "completed",
+    featured: true,
+    repo: "https://github.com/Moin-Palekar/personal-website",
+    problem:
+      "A portfolio should prove engineering skill, not just describe it. That means real authentication, a real API, and a publishing workflow, not a static template.",
+    built: [
+      "Built a Next.js and TypeScript frontend deployed on Vercel",
+      "Built an Express and MongoDB API on Render, with JWT authentication guarding admin-only publishing",
+      "Wrote a Markdown renderer with KaTeX math and syntax highlighting, accepting LaTeX pasted from Overleaf",
+      "Designed a custom canvas animation of cosmic history for the navigation bar",
+    ],
+    decisions: [
+      {
+        choice: "Separate frontend and API hosts",
+        why: "Each scales and deploys independently, mirroring how production systems are split.",
+      },
+      {
+        choice: "Registration closed by default",
+        why: "Only the owner can publish, enforced on the server rather than hidden in the UI.",
+      },
+    ],
+    tech: ["Next.js", "TypeScript", "Express", "MongoDB", "Tailwind", "JWT"],
+  },
+  {
     slug: "mot3d",
     title: "MOT3D: Real-Time 3D Multi-Object Tracking",
     oneLiner:
@@ -166,6 +194,7 @@ export const projects: Project[] = [
     oneLiner:
       "A distributed job queue in Go, backed by PostgreSQL and Redis and deployed on Kubernetes.",
     status: "in progress",
+    featured: true,
     repo: "https://github.com/Moin-Palekar/taskq",
     problem:
       "Background work like emails, reports and data pipelines must run exactly once, even when workers crash mid-job or the network drops. Losing or duplicating a job is a real production incident.",
@@ -193,32 +222,5 @@ export const projects: Project[] = [
       { label: "Throughput benchmarks", done: false },
     ],
     tech: ["Go", "PostgreSQL", "Redis", "Kubernetes"],
-  },
-  {
-    slug: "personal-website",
-    title: "moinpalekar.com",
-    oneLiner:
-      "This site: a Next.js and TypeScript frontend on Vercel, an Express and MongoDB API on Render, JWT auth, and a Markdown + LaTeX blog engine.",
-    status: "completed",
-    repo: "https://github.com/Moin-Palekar/personal-website",
-    problem:
-      "A portfolio should prove engineering skill, not just describe it. That means real authentication, a real API, and a publishing workflow, not a static template.",
-    built: [
-      "Built a Next.js and TypeScript frontend deployed on Vercel",
-      "Built an Express and MongoDB API on Render, with JWT authentication guarding admin-only publishing",
-      "Wrote a Markdown renderer with KaTeX math and syntax highlighting, accepting LaTeX pasted from Overleaf",
-      "Designed a custom canvas animation of cosmic history for the navigation bar",
-    ],
-    decisions: [
-      {
-        choice: "Separate frontend and API hosts",
-        why: "Each scales and deploys independently, mirroring how production systems are split.",
-      },
-      {
-        choice: "Registration closed by default",
-        why: "Only the owner can publish, enforced on the server rather than hidden in the UI.",
-      },
-    ],
-    tech: ["Next.js", "TypeScript", "Express", "MongoDB", "Tailwind", "JWT"],
   },
 ];
